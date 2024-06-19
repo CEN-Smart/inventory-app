@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 
-import SubmitButton from '@/components/form/submit-button';
+import SubmitButton from '@/components/form/components/submit-button';
 import { Google } from '@/assets';
 
 export const Social = () => {

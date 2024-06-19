@@ -1,23 +1,23 @@
 import { Metadata } from 'next';
-import CompleteSignUpForm from '@/components/form/complete-sign-up-form';
+import CompleteSignUpForm from '@/components/form/complete-reg-form';
 
 export const metadata: Metadata = {
-  title: 'Complete Sign Up',
-  description:
-    'Complete your sign up process to access the Inventory Management System.',
-  keywords: [
-    'Inventory Management System',
-    'Inventory',
-    'Management',
-    'System',
-    'Zequence',
-    'Digital',
-    'Complete',
-    'Sign Up',
-  ],
+	title: 'Complete Sign Up',
+	description:
+		'Complete your sign up process to access the Inventory Management System.',
+	keywords: [
+		'Inventory Management System',
+		'Inventory',
+		'Management',
+		'System',
+		'Zequence',
+		'Digital',
+		'Complete',
+		'Sign Up',
+	],
 };
 const CompleteRegistrationPage = () => {
-  return <CompleteSignUpForm />;
+	return <CompleteSignUpForm />;
 };
 
 export default CompleteRegistrationPage;

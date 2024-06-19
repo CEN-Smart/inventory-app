@@ -59,10 +59,18 @@ const config = {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))',
 					100: '#010101',
+					200: '#334155',
+					300: '#64748B',
+					400: '#475467',
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
+				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))',
+					100: '#10B981',
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',

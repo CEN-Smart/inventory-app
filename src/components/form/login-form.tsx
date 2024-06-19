@@ -1,16 +1,22 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { useReducer } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 
 import { CardWrapper } from '../auth/card-wrapper';
 import { Logo, EyeClose, EyeOpen } from '@/assets';
-import SubmitButton from './submit-button';
-import OrDivider from './or-divider';
+import SubmitButton from './components/submit-button';
+import OrDivider from './components/or-divider';
+import { loginSchema } from '@/schemas/login';
+import { cn } from '@/lib/utils';
 import {
 	Form,
 	FormControl,
@@ -20,23 +26,29 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { loginSchema } from '@/schemas/login';
-import { cn } from '@/lib/utils';
 
+type LoginSchema = z.infer<typeof loginSchema>;
 const LoginForm = () => {
+	const router = useRouter();
 	const [showPassword, setShowPassword] = useReducer(state => !state, false);
-	const form = useForm({
+	const form = useForm<LoginSchema>({
 		resolver: zodResolver(loginSchema),
 		mode: 'onBlur',
 		defaultValues: {
-			email: '',
+			emailOrUsername: '',
 			password: '',
 		},
 	});
 
-	const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+	const onSubmit = async (data: LoginSchema) => {
 		console.log(data);
 	};
+	const mutation = useMutation({
+		mutationFn: onSubmit,
+		onSuccess: () => {
+			router.push('/dashboard');
+		},
+	});
 	return (
 		<CardWrapper
 			actionLabel='Sign up'
@@ -48,17 +60,29 @@ const LoginForm = () => {
 			backButtonLabel="Don't have an account?">
 			<Form {...form}>
 				<form
-					onSubmit={form.handleSubmit(onSubmit)}
+					onSubmit={form.handleSubmit(data => mutation.mutate(data))}
 					className='space-y-3'>
 					<FormField
 						control={form.control}
-						name='email'
-						render={({ field }) => (
+						name='emailOrUsername'
+						render={({ field, fieldState }) => (
 							<FormItem>
-								<FormLabel>Email</FormLabel>
+								<FormLabel
+									className={cn(`text-muted-200`, {
+										'text-destructive': fieldState?.invalid,
+									})}>
+									Email or Username
+								</FormLabel>
 								<FormControl>
 									<Input
-										placeholder='Email'
+										className={cn(
+											`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:border-gray-300`,
+											{
+												'border-destructive focus-visible:ring-transparent':
+													fieldState?.invalid,
+											}
+										)}
+										placeholder='Enter your email or Username'
 										{...field}
 									/>
 								</FormControl>
@@ -70,28 +94,25 @@ const LoginForm = () => {
 						<FormField
 							control={form.control}
 							name='password'
-							render={({ field }) => (
+							render={({ field, fieldState }) => (
 								<FormItem>
-									<FormLabel>Password</FormLabel>
+									<FormLabel
+										className={cn(`text-muted-200`, {
+											'text-destructive': fieldState?.invalid,
+										})}>
+										Password
+									</FormLabel>
 									<FormControl>
 										<Input
-											className={cn(` w-full
-            px-4
-            py-2
-            border
-            border-gray-300
-            rounded-lg
-            focus:outline-none
-            focus:border-blue-500
-            focus:ring-1
-            focus:ring-blue-500
-            focus:ring-opacity-50
-            disabled:opacity-50
-            disabled:cursor-not-allowed
-            disabled:bg-gray-100
-            disabled:border-gray-300`)}
+											className={cn(
+												` w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:border-gray-300`,
+												{
+													'border-destructive focus-visible:ring-transparent':
+														fieldState?.invalid,
+												}
+											)}
 											type={showPassword ? 'text' : 'password'}
-											placeholder='Password'
+											placeholder='*********'
 											{...field}
 										/>
 									</FormControl>
@@ -102,29 +123,7 @@ const LoginForm = () => {
 						<button
 							type='button'
 							className={cn(
-								`
-                    absolute
-                    right-0
-					top-8
-                    px-4
-					py-[0.33rem]
-                    flex
-                    items-center
-                    justify-center
-                    bg-white
-                    border
-                    border-gray-300
-                    rounded-r-lg
-                    focus:outline-none
-                    focus:border-blue-500
-                    focus:ring-1
-                    focus:ring-blue-500
-                    focus:ring-opacity-50
-                    disabled:opacity-50
-                    disabled:cursor-not-allowed
-                    disabled:bg-gray-100
-                    disabled:border-gray-300
-                  `
+								`absolute top-[2.36rem] right-3 transform  text-gray-400 focus:outline-none`
 							)}
 							onClick={setShowPassword}>
 							{showPassword ? (

@@ -2,11 +2,12 @@ import { z } from 'zod';
 
 export const signUpSchema = z
 	.object({
-		email: z
-			.string({ required_error: 'Email is required' })
-			.email({ message: 'Invalid Email' })
-			.toLowerCase()
-			.trim(),
+		username: z
+			.string()
+			.trim()
+			.min(3, { message: 'Username must be at least 3 characters' }),
+		// email field should be a valid email
+		email: z.string().trim().email({ message: 'Invalid email' }).toLowerCase(),
 		//  password field show follow the password policy
 		// 1. At least 8 characters
 		// 2. At least one uppercase letter
@@ -14,26 +15,15 @@ export const signUpSchema = z
 		// 4. At least one number
 		// 5. At least one special character
 		password: z
-			.string({
-				required_error: 'Password is required',
-			})
+			.string()
 			.min(8, { message: 'Password must be at least 8 characters' })
 			.regex(
 				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/,
 				'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
-			),
+			)
+			.trim(),
 		// confirmPassword field should match the password field
-		confirmPassword: z.string({
-			required_error: 'Confirm password is required',
-		}),
-		// verification code that is a number
-		verificationCode: z
-			.string({
-				required_error: 'Verification code is required',
-			})
-			.regex(/^\d{6}$/, {
-				message: 'Verification code must be a 6-digit number',
-			}),
+		confirmPassword: z.string().optional(),
 	})
 	.refine(data => data.password === data.confirmPassword, {
 		message: 'Passwords do not match',
