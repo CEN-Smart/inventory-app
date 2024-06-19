@@ -46,7 +46,7 @@ const LoginForm = () => {
 	const mutation = useMutation({
 		mutationFn: onSubmit,
 		onSuccess: () => {
-			router.push('/dashboard');
+			router.push('/dashboard/overview');
 		},
 	});
 	return (
