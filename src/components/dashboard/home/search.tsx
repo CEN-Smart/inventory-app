@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Search } from '@/assets';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+
 const SearchBar = () => {
 	return (
 		<div className='flex items-center w-full p-3 rounded-md relative'>

@@ -1,31 +1,37 @@
 'use client';
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useReducer } from 'react';
+
+import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
+import * as z from 'zod';
 
-import { EyeClose, EyeOpen, Logo } from '@/assets';
-import { CardWrapper } from '@/components/auth/card-wrapper';
-import SubmitButton from '@/components/form/components/submit-button';
-import OrDivider from '@/components/form/components/or-divider';
-import PasswordPolicyMessage from '@/components/form/components/password-policy-message';
-import { signUpSchema } from '@/schemas/sign-up';
-import usePasswordPolicy from '@/hooks/password-policy';
-import { PasswordPolicyRule } from '@/types/password-policy';
-import { cn } from '@/lib/utils';
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  EyeClose,
+  EyeOpen,
+  Logo,
+} from '@/assets';
+import { CardWrapper } from '@/components/auth/card-wrapper';
+import OrDivider from '@/components/form/components/or-divider';
+import PasswordPolicyMessage
+  from '@/components/form/components/password-policy-message';
+import SubmitButton from '@/components/form/components/submit-button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import usePasswordPolicy from '@/hooks/password-policy';
+import { cn } from '@/lib/utils';
+import { signUpSchema } from '@/schemas/sign-up';
+import { PasswordPolicyRule } from '@/types/password-policy';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 
 type SignUpSchema = z.infer<typeof signUpSchema>;
 
@@ -80,6 +86,12 @@ const SignUpForm = () => {
 		}
 	};
 
+	const mutation = useMutation({
+		mutationFn: onSubmit,
+		onSuccess: () => {
+			router.push('/auth/verify-code');
+		},
+	});
 	return (
 		<CardWrapper
 			actionLabel='Sign in'
@@ -91,7 +103,7 @@ const SignUpForm = () => {
 			backButtonLabel='Already have an account?'>
 			<Form {...form}>
 				<form
-					onSubmit={form.handleSubmit(onSubmit)}
+					onSubmit={form.handleSubmit(data => mutation.mutate(data))}
 					className='space-y-3'>
 					<FormField
 						control={form.control}

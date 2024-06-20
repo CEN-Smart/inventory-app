@@ -1,7 +1,9 @@
-import Image from 'next/image';
+import {
+  Add,
+  Import,
+} from '@/assets';
 
 import CustomButton from '../custom-button';
-import { Import, Add } from '@/assets';
 
 const ImportAndAdd = () => {
 	return (

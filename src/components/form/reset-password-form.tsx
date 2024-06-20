@@ -1,32 +1,40 @@
 'use client';
 
-import Image from 'next/image';
 import { useReducer } from 'react';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 
-import { CardWrapper } from '@/components/auth/card-wrapper';
-import { Logo, EyeClose, EyeOpen } from '@/assets';
-import SubmitButton from '@/components/form/components/submit-button';
-import { resetPasswordSchema } from '@/schemas/reset-password';
-import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  EyeClose,
+  EyeOpen,
+  Logo,
+} from '@/assets';
+import { CardWrapper } from '@/components/auth/card-wrapper';
+import SubmitButton from '@/components/form/components/submit-button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import { resetPasswordSchema } from '@/schemas/reset-password';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 
 type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
 const ResetPasswordForm = () => {
+	const router = useRouter();
 	const [showPassword, setShowPassword] = useReducer(state => !state, false);
 	const form = useForm<ResetPasswordSchema>({
 		resolver: zodResolver(resetPasswordSchema),
-		mode: 'onBlur',
+		mode: 'all',
 		defaultValues: {
 			password: '',
 		},
@@ -35,6 +43,13 @@ const ResetPasswordForm = () => {
 	const onSubmit = async (data: ResetPasswordSchema) => {
 		console.log(data);
 	};
+
+	const mutation = useMutation({
+		mutationFn: onSubmit,
+		onSuccess: () => {
+			router.push('/auth/login');
+		},
+	});
 
 	return (
 		<CardWrapper
@@ -46,7 +61,7 @@ const ResetPasswordForm = () => {
 			actionLabel='Login'>
 			<Form {...form}>
 				<form
-					onSubmit={form.handleSubmit(onSubmit)}
+					onSubmit={form.handleSubmit(data => mutation.mutate(data))}
 					className='space-y-3'>
 					<div className='relative'>
 						<FormField

@@ -1,24 +1,26 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
-import { cn } from '@/lib/utils';
+import SubmitButton from '@/components/form/components/submit-button';
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import SubmitButton from '@/components/form/components/submit-button';
-import ResendCodeOrChangeAccount from './components/resend-code-or-change-account';
+import { cn } from '@/lib/utils';
 import { verificationCodeSchema } from '@/schemas/verification-code';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+
+import ResendCodeOrChangeAccount
+  from './components/resend-code-or-change-account';
 
 type VerificationCodeSchema = z.infer<typeof verificationCodeSchema>;
 const VerifyCodeForm = () => {
@@ -42,11 +44,18 @@ const VerifyCodeForm = () => {
 		router.push('/auth/login');
 	};
 
+	const mutation = useMutation({
+		mutationFn: onSubmit,
+		onSuccess: () => {
+			router.push('/auth/complete-registration');
+		},
+	});
+
 	return (
 		<Form {...form}>
 			<form
 				className='space-y-3'
-				onSubmit={form.handleSubmit(onSubmit)}>
+				onSubmit={form.handleSubmit(data => mutation.mutate(data))}>
 				<FormField
 					control={form.control}
 					name='code'

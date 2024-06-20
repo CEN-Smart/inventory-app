@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import NavLinks from '@/components/dashboard/nav-links';
-import SearchBar from './home/search';
-import SvgSupport from '../svg/svg-support';
-import SvgSettings from '../svg/svg-settings';
 import { cn } from '@/lib/utils';
+
+import SvgSettings from '../svg/svg-settings';
+import SvgSupport from '../svg/svg-support';
+import SearchBar from './home/search';
 
 const links = [
 	{

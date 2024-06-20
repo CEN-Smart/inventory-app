@@ -1,41 +1,48 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-import PhoneInput from 'react-phone-input-2';
-import { useQuery } from '@tanstack/react-query';
-
-import { getAllLga, getAllStates } from '@/queries/get-all-state';
-import { CardWrapper } from '@/components/auth/card-wrapper';
-import { Logo } from '@/assets';
-import SelectField, { UserRole } from './components/select-field';
-import SubmitButton from '@/components/form/components/submit-button';
-import { cn } from '@/lib/utils';
 import 'react-phone-input-2/lib/style.css';
 
-import FileUploadWrapper from './components/file-upload-wrapper';
-import { FormResponse } from '../form-response';
-import { completeSignUpSchema } from '@/schemas/complete-registration';
+import { useState } from 'react';
+
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import PhoneInput from 'react-phone-input-2';
+import * as z from 'zod';
+
+import { Logo } from '@/assets';
+import { CardWrapper } from '@/components/auth/card-wrapper';
+import SubmitButton from '@/components/form/components/submit-button';
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { cn } from '@/lib/utils';
+import {
+  getAllLga,
+  getAllStates,
+} from '@/queries/get-all-state';
+import { completeSignUpSchema } from '@/schemas/complete-registration';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
+
+import { FormResponse } from '../form-response';
+import FileUploadWrapper from './components/file-upload-wrapper';
+import SelectField, { UserRole } from './components/select-field';
 
 type CompleteRegistration = z.infer<typeof completeSignUpSchema>;
 const CompleteSignUpForm = () => {
@@ -61,6 +68,13 @@ const CompleteSignUpForm = () => {
 	const onSubmit = async (data: CompleteRegistration) => {
 		console.log(data);
 	};
+
+	const mutation = useMutation({
+		mutationFn: onSubmit,
+		onSuccess: () => {
+			router.push('/dashboard/overview');
+		},
+	});
 
 	const {
 		data: states,
@@ -118,7 +132,7 @@ const CompleteSignUpForm = () => {
 			headerLabel='Let’s proceed to set up your profile'>
 			<Form {...form}>
 				<form
-					onSubmit={form.handleSubmit(onSubmit)}
+					onSubmit={form.handleSubmit(data => mutation.mutate(data))}
 					className={cn(`
       flex flex-col space-y-6 w-full items-center
       `)}>

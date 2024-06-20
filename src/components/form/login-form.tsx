@@ -1,31 +1,35 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { useReducer } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 
-import * as z from 'zod';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import {
+  EyeClose,
+  EyeOpen,
+  Logo,
+} from '@/assets';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import { loginSchema } from '@/schemas/login';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 
 import { CardWrapper } from '../auth/card-wrapper';
-import { Logo, EyeClose, EyeOpen } from '@/assets';
-import SubmitButton from './components/submit-button';
 import OrDivider from './components/or-divider';
-import { loginSchema } from '@/schemas/login';
-import { cn } from '@/lib/utils';
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import SubmitButton from './components/submit-button';
 
 type LoginSchema = z.infer<typeof loginSchema>;
 const LoginForm = () => {

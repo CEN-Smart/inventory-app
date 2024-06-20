@@ -1,4 +1,4 @@
-import SideNav from '@/components/dashboard/sidenav';
+import SideNav from '@/components/dashboard/side-nav';
 import WelcomeAndActions from '@/components/dashboard/welcome-and-actions';
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@/lib/utils';
 import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
 } from '@/components/ui/accordion';
+import { cn } from '@/lib/utils';
+
 import SvgHome from '../svg/svg-home';
 import SvgProducts from '../svg/svg-products';
 import SvgStocks from '../svg/svg-stocks';
@@ -125,7 +125,7 @@ export default function NavLinks() {
 																pathname.includes(subLink.href),
 														}
 													)}>
-													<p className='flex items-center justify-between w-full'>
+													<p className='flex items-center justify-between gap-2 w-full'>
 														<span className=' inline-block'>
 															{subLink.name}
 														</span>
