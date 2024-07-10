@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={cn(`antialiased  `)}>
+			<body className={cn(`antialiased  md:overflow-y-hidden`)}>
 				<TanstackQueryProviders>{children}</TanstackQueryProviders>
 			</body>
 		</html>

@@ -1,4 +1,99 @@
 {
-  "users": [
-  ]
+	"users": [],
+	"products": [
+		{
+			"id": "m5gr84i9",
+			"product": "Product 1",
+			"category": "Product Category 1",
+			"quantity": 10,
+			"status": "inStock",
+			"branch": "Ikeja",
+			"note": "Note 1"
+		},
+
+		{
+			"id": "m5gr84i8",
+			"product": "Product 2",
+			"category": "Product Category 2",
+			"quantity": 20,
+			"status": "outOfStock",
+			"branch": "Lekki",
+			"note": "Note 2"
+		},
+
+		{
+			"id": "m5gr84i7",
+			"product": "Product 3",
+			"category": "Product Category 3",
+			"quantity": 30,
+			"status": "inStock",
+			"branch": "Ikeja",
+			"note": "Note 3"
+		},
+		{
+			"id": "m5gr84i6",
+			"product": "Product 4",
+			"category": "Product Category 4",
+			"quantity": 40,
+			"status": "outOfStock",
+			"branch": "Lekki",
+			"note": "Note 4"
+		},
+		{
+			"id": "m5gr84i5",
+			"product": "Product 5",
+			"category": "Product Category 5",
+			"quantity": 50,
+			"status": "runningOut",
+			"branch": "Ikeja",
+			"note": "Note 5"
+		}
+	],
+	"stocks": [
+		{
+			"id": "m5gr84i001",
+			"stock": "Stock 5",
+			"category": "Stock Category 5",
+			"quantity": 50,
+			"status": "runningOut",
+			"branch": "Ikeja",
+			"note": "Note 5"
+		},
+		{
+			"id": "m5gr84i002",
+			"stock": "Stock 4",
+			"category": "Stock Category 4",
+			"quantity": 40,
+			"status": "outOfStock",
+			"branch": "Lekki",
+			"note": "Note 4"
+		},
+		{
+			"id": "m5gr84i003",
+			"stock": "Stock 3",
+			"category": "Stock Category 3",
+			"quantity": 30,
+			"status": "inStock",
+			"branch": "Ikeja",
+			"note": "Note 3"
+		},
+		{
+			"id": "m5gr84i004",
+			"stock": "Stock 2",
+			"category": "Stock Category 2",
+			"quantity": 20,
+			"status": "outOfStock",
+			"branch": "Lekki",
+			"note": "Note 2"
+		},
+		{
+			"id": "m5gr84i005",
+			"stock": "Stock 1",
+			"category": "Stock Category 1",
+			"quantity": 10,
+			"status": "inStock",
+			"branch": "Ikeja",
+			"note": "Note 1"
+		}
+	]
 }

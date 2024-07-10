@@ -13,7 +13,10 @@ import FileUpload from '/public/images/dropUpload.svg';
 import EyeClose from '/public/images/eyeClose.svg';
 import EyeOpen from '/public/images/eyeOpen.svg';
 import Google from '/public/images/google.svg';
+import InStock from '/public/images/in-stock.svg';
 import Logo from '/public/images/logo.svg';
+import OutOfStock from '/public/images/out-of-stock.svg';
+import RunningOut from '/public/images/running-out.svg';
 
 export {
   Add,
@@ -24,8 +27,11 @@ export {
   Google,
   Home,
   Import,
+  InStock,
   Logo,
+  OutOfStock,
   Products,
+  RunningOut,
   Search,
   Settings,
   Stock,

@@ -1,9 +1,7 @@
+import { StockList } from '@/components/dashboard/stocks/stock-list';
+
 const ListStockPage = () => {
-	return (
-		<div>
-			<h1>List Stock Page</h1>
-		</div>
-	);
+	return <StockList />;
 };
 
 export default ListStockPage;

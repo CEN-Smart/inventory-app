@@ -25,6 +25,8 @@ const CustomButton = ({
 			{...rest}>
 			{src && (
 				<Image
+					width={20}
+					height={20}
 					src={src}
 					alt={alt}
 				/>

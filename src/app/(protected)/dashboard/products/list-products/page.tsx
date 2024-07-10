@@ -1,9 +1,7 @@
+import { ProductList } from '@/components/dashboard/products/product-list';
+
 const ListProductsPage = () => {
-	return (
-		<div>
-			<h1>List Products Page</h1>
-		</div>
-	);
+	return <ProductList />;
 };
 
 export default ListProductsPage;

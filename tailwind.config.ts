@@ -63,6 +63,8 @@ const config = {
 					200: '#334155',
 					300: '#64748B',
 					400: '#475467',
+					500: '#344054',
+					600: '#EAECF0',
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',

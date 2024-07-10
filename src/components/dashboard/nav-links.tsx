@@ -94,7 +94,8 @@ export default function NavLinks() {
 							className='md:flex-grow flex-grow-0 border-none md:[&>svg]:block [&>svg]:hidden  '>
 							<AccordionTrigger
 								className={cn(
-									`hover:no-underline flex  items-center group py-2 px-3 rounded-md text-sm font-medium grow  hover:bg-primary-100/80  md:flex-none md:justify-start data-[state=open]:bg-primary-100 hover:text-white [&[data-state=open]>*]:text-white [&>svg]:hover:text-white w-full [&>svg]:ml-auto [&[data-state=open]>div>svg]:stroke-white`
+									`hover:no-underline flex  items-center group py-2 px-3 rounded-md text-sm font-medium grow  hover:bg-primary-100/80  md:flex-none md:justify-start data-[state=open]:bg-primary-100 hover:text-white [&[data-state=open]>*]:text-white [&>svg]:hover:text-white w-full [&>svg]:ml-auto [&[data-state=open]>div>svg]:stroke-white`,
+									{}
 								)}>
 								<div className='flex items-center gap-2 svg__sibling shrink-0'>
 									<Icon

@@ -1,3 +1,5 @@
 {
-	"API_STATE": "https://nga-states-lga.onrender.com"
+	"API_STATE": "https://nga-states-lga.onrender.com",
+	"API_PRODUCTS": "http://localhost:8000/products",
+	"API_STOCKS": "http://localhost:8000/products"
 }

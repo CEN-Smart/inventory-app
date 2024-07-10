@@ -47,7 +47,7 @@ const LoginForm = () => {
 	const onSubmit = async (data: LoginSchema) => {
 		console.log(data);
 	};
-	const mutation = useMutation({
+	const { mutate, isPending } = useMutation({
 		mutationFn: onSubmit,
 		onSuccess: () => {
 			router.push('/dashboard/overview');
@@ -64,7 +64,7 @@ const LoginForm = () => {
 			backButtonLabel="Don't have an account?">
 			<Form {...form}>
 				<form
-					onSubmit={form.handleSubmit(data => mutation.mutate(data))}
+					onSubmit={form.handleSubmit(data => mutate(data))}
 					className='space-y-3'>
 					<FormField
 						control={form.control}
