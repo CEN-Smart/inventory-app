@@ -1,11 +1,19 @@
 'use client';
 
-import { cn } from '@/lib/utils';
+import Image from 'next/image';
+
+import {
+  DragAndDrop,
+  FileUpload,
+  UserAvatar,
+} from '@/assets';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { UserAvatar, DragAndDrop, FileUpload } from '@/assets';
-import Image from 'next/image';
 
 type FileUploadWrapperProps = {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,6 +23,7 @@ const FileUploadWrapper = ({
 	onChange,
 	selectedImage,
 }: FileUploadWrapperProps) => {
+	console.log(selectedImage);
 	return (
 		<div className='space-y-1'>
 			<Label

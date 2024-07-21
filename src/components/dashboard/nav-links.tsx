@@ -1,16 +1,15 @@
 'use client';
 
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '@/components/ui/accordion';
+
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import { cn } from '@/lib/utils';
-
 import SvgHome from '../svg/svg-home';
 import SvgProducts from '../svg/svg-products';
 import SvgStocks from '../svg/svg-stocks';
@@ -68,6 +67,20 @@ const links = [
 			{
 				name: 'Stock request',
 				href: '/dashboard/stocks/stock-request',
+			},
+		],
+	},
+	{
+		name: 'Sales',
+		IconComponent: SvgStocks,
+		subLinks: [
+			{
+				name: 'All sales',
+				href: '/dashboard/sales/all-sales',
+			},
+			{
+				name: 'Add sales',
+				href: '/dashboard/sales/add-sales',
 			},
 		],
 	},

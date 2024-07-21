@@ -55,6 +55,7 @@ const config = {
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))',
+					100: '#F04438',
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
@@ -74,6 +75,7 @@ const config = {
 					DEFAULT: 'hsl(var(--success))',
 					foreground: 'hsl(var(--success-foreground))',
 					100: '#10B981',
+					200: '#12B76A',
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',

@@ -4,7 +4,7 @@ import WelcomeMessage from './home/welcome-message';
 const WelcomeAndActions = () => {
 	return (
 		<div>
-			<div className='flex items-start justify-between pb-6'>
+			<div className='flex items-start justify-between pb-6 max-lg:flex-col gap-4'>
 				<WelcomeMessage />
 				<ImportAndAdd />
 			</div>
